@@ -17,7 +17,7 @@ const GOOGLE_API_FOLDER_ID = '1W3Yd0dn_hdEOcHIfDgr9tkD49Wbt9WsN'
 async function uploadFile(img) {
     try {
         const auth = new google.auth.GoogleAuth({
-            keyFile: '/Users/hassaanbaig/reactapp/backend/drive-file-upload-366511-b513671294f1.json',
+            keyFile: './drive-file-upload-366511-b513671294f1.json',
             scopes: ['https://www.googleapis.com/auth/drive']
         })
 
@@ -47,12 +47,10 @@ async function uploadFile(img) {
         console.log('Upload file error', err)
     }
 }
-app.get('/:id?', (res, req) => {
-    console.log('iD: ',req.body)
-    uploadFile("/Users/hassaanbaig/reactapp/backend/show.jpeg").then(data => {
-        console.log(data)
+app.get('/:id', (req, res) => {
+    console.log('req body: ',req.params.id)
+    uploadFile(`./${req.params.id}`).then(data => {
     })
-    console.log("mc")
 }
 
 )
